@@ -62,7 +62,7 @@ find . -name Makefile |xargs sed -i -e 's,/lib/,/%{_lib}/,g'
 find . -name Makefile |while read r; do
 	[ "$r" = "./pins/Makefile" ] && continue
 	cd $(dirname $r)
-	%make_build PREFIX=/ DESTDIR=%{_prefix}
+	%make_build PREFIX=/ DESTDIR=%{_prefix} CC=%{__cc} DEBUG="%{optflags}"
 	cd -
 done
 
