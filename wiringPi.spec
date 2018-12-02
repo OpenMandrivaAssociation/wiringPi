@@ -59,24 +59,22 @@ find . -name Makefile |xargs sed -i -e 's,/lib/,/%{_lib}/,g'
 %endif
 
 %build
-HDRDIR="$(pwd)/wiringPi"
-find . -name Makefile |while read r; do
-	[ "$r" = "./pins/Makefile" ] && continue
-	cd $(dirname $r)
-	%make_build PREFIX=/ DESTDIR=%{_prefix} CC=%{__cc} DEBUG="%{optflags} -I${HDRDIR}"
+HDRFLAGS="-I$(pwd)/wiringPi -I$(pwd)/devLib"
+LIBFLAGS="-L$(pwd)/"
+
+ln -s wiringPi/libwiringPi.so.%{version} libwiringPi.so
+ln -s devLib/libwiringPiDev.so.%{version} libwiringPiDev.so
+
+for i in wiringPi devLib wiringPiD gpio examples/scrollPhat examples/PiGlow; do
+	cd "$i"
+	%make_build PREFIX=/ DESTDIR=%{_prefix} CC=%{__cc} DEBUG="%{optflags} ${HDRFLAGS}" LDFLAGS="%{optflags} ${LIBFLAGS}"
 	cd -
 done
 
 %install
 mkdir -p %{buildroot}%{_bindir} %{buildroot}%{_libdir}
-find . -name Makefile |while read r; do
-	[ "$r" = "./pins/Makefile" ] && continue
-	[ "$r" = "./examples/Gertboard/Makefile" ] && continue
-	[ "$r" = "./examples/PiFace/Makefile" ] && continue
-	[ "$r" = "./examples/q2w/Makefile" ] && continue
-	[ "$r" = "./examples/Makefile" ] && continue
-
-	cd $(dirname $r)
+for i in wiringPi devLib wiringPiD gpio examples/scrollPhat examples/PiGlow; do
+	cd "$i"
 	%make_install PREFIX=/ DESTDIR=%{buildroot}%{_prefix} LDCONFIG=true
 	cd -
 done
