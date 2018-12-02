@@ -9,6 +9,7 @@ Version:	2.46
 Release:	1
 URL:		http://wiringpi.com/
 Source0:	wiringPi-2.46.tar.gz
+Patch0:		wiringPi-2.46-ldflags.patch
 License:	LGPLv3
 Group:		System/Libraries
 # Compiles everywhere, but is probably useful only on Pis...

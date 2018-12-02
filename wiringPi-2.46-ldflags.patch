@@ -1,0 +1,12 @@
+diff -up wiringPi-2.46/wiringPi/Makefile.omv~ wiringPi-2.46/wiringPi/Makefile
+--- wiringPi-2.46/wiringPi/Makefile.omv~	2018-12-03 00:04:37.691119072 +0100
++++ wiringPi-2.46/wiringPi/Makefile	2018-12-03 00:04:43.772122934 +0100
+@@ -75,7 +75,7 @@ static:
+ 
+ $(DYNAMIC):	$(OBJ)
+ 	$Q echo "[Link (Dynamic)]"
+-	$Q $(CC) -shared -Wl,-soname,libwiringPi.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPi.so.$(VERSION) $(LIBS) $(OBJ)
++	$Q $(CC) -shared -Wl,-soname,libwiringPi.so$(WIRINGPI_SONAME_SUFFIX) -o libwiringPi.so.$(VERSION) $(LDFLAGS) $(LIBS) $(OBJ)
+ 
+ .c.o:
+ 	$Q echo [Compile] $<
