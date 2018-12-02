@@ -59,10 +59,11 @@ find . -name Makefile |xargs sed -i -e 's,/lib/,/%{_lib}/,g'
 %endif
 
 %build
+HDRDIR="$(pwd)/wiringPi"
 find . -name Makefile |while read r; do
 	[ "$r" = "./pins/Makefile" ] && continue
 	cd $(dirname $r)
-	%make_build PREFIX=/ DESTDIR=%{_prefix} CC=%{__cc} DEBUG="%{optflags}"
+	%make_build PREFIX=/ DESTDIR=%{_prefix} CC=%{__cc} DEBUG="%{optflags} -I${HDRDIR}"
 	cd -
 done
 
