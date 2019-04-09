@@ -4,11 +4,11 @@
 %define devlibname %mklibname wiringPiDev %{major}
 
 Summary:	GPIO Interface Library for the Raspberry Pi
-Name:		wiringPi
+Name:		wiringpi
 Version:	2.46
 Release:	1
 URL:		http://wiringpi.com/
-Source0:	wiringPi-2.46.tar.gz
+Source0:	http://sources.buildroot.net/wiringpi/%{name}-%{version}.tar.gz
 Patch0:		wiringPi-2.46-ldflags.patch
 License:	LGPLv3
 Group:		System/Libraries
