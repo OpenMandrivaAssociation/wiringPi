@@ -2,13 +2,14 @@
 %define libname %mklibname wiringPi %{major}
 %define devname %mklibname -d wiringPi
 %define devlibname %mklibname wiringPiDev %{major}
+%define date 20211019
 
 Summary:	GPIO Interface Library for the Raspberry Pi
 Name:		wiringpi
-Version:	2.46
-Release:	1
-URL:		http://wiringpi.com/
-Source0:	http://sources.buildroot.net/wiringpi/%{name}-%{version}.tar.gz
+Version:	2.60
+Release:	%{?date:0.%{date}.}1
+URL:		https://github.com/WiringPi/WiringPi
+Source0:	https://github.com/WiringPi/WiringPi/archive/refs/heads/master.tar.gz
 Patch0:		wiringPi-2.46-ldflags.patch
 License:	LGPLv3
 Group:		System/Libraries
@@ -52,7 +53,7 @@ Requires:	%{devlibname} = %{EVRD}
 Development files for WiringPi, the Raspberry Pi GPIO library
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n WiringPi-master
 find . -name Makefile |xargs sed -i -e 's,chown,#chown,'
 find . -name Makefile |xargs sed -i -e 's,/usr/local/,$(DESTDIR)/,g'
 %if "%{_lib}" != "lib"
