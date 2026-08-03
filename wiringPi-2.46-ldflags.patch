@@ -1,7 +1,6 @@
-diff -up WiringPi-master/wiringPi/Makefile.1~ WiringPi-master/wiringPi/Makefile
---- WiringPi-master/wiringPi/Makefile.1~	2021-10-19 00:50:55.547738122 +0200
-+++ WiringPi-master/wiringPi/Makefile	2021-10-19 00:52:00.785925683 +0200
-@@ -75,7 +75,7 @@ static:
+--- a/wiringPi/Makefile
++++ b/wiringPi/Makefile
+@@ -76,7 +76,7 @@
  
  $(DYNAMIC):	$(OBJ)
  	$Q echo "[Link (Dynamic)]"

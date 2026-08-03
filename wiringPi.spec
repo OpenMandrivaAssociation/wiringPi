@@ -6,7 +6,7 @@
 
 Summary:	GPIO Interface Library for the Raspberry Pi
 Name:		wiringpi
-Version:	2.61_1
+Version:	3.18
 Release:	%{?date:0.%{date}.}1
 URL:		https://github.com/WiringPi/WiringPi
 %if 0%{?git:1}
